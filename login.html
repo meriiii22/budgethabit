@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - BudgetHabit</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Poppins, sans-serif;
+      }
+
+      body {
+        background: #f6f9fc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        background: white;
+        padding: 40px;
+        border-radius: 18px;
+        width: 350px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        text-align: center;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .error {
+        color: #e53e3e;
+        background: #ffe5e5;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 14px;
+        margin-bottom: 10px;
+        display: none;
+      }
+
+      .success {
+        color: #2f855a;
+        background: #e6fffa;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 14px;
+        margin-bottom: 10px;
+        display: none;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 14px;
+        transition: 0.2s;
+      }
+
+      input:focus {
+        border-color: #5a67d8;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(90, 103, 216, 0.2);
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 25px;
+        background: #5a67d8;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+
+      .forgot-password-link {
+        display: block;
+        text-align: left;
+        font-size: 13px;
+        margin-top: -5px;
+        margin-bottom: 10px;
+        color: #5a67d8;
+        text-decoration: none;
+      }
+
+        .forgot-password-link:hover {
+        text-decoration: underline;
+        }
+
+      a {
+        display: block;
+        margin-top: 15px;
+        font-size: 14px;
+        text-decoration: none;
+        color: #666;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        color: #5a67d8;
+      }
+
+      .password-wrapper {
+        position: relative;
+      }
+
+      .toggle-password {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 13px;
+        color: #5a67d8;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+    <h2>Login</h2>
+    <div class="error" id="error"></div>
+    <div class="success" id="success"></div>
+    <form id="loginForm">
+    <input type="email" id="email" placeholder="Email Address" required />
+    <div class="password-wrapper">
+    <input
+    type="password"
+    id="password"
+    placeholder="Password"
+    required
+    />
+    <span class="toggle-password" data-target="password">Show</span>
+    </div>
+    
+    <!-- Link placed above the button, left-aligned -->
+    <a href="forgot-password.php" class="forgot-password-link">Forgot password?</a>
+
+    <button type="submit">Login</button>
+    </form>
+    <a href="register.html">Don't have an account? Register</a>
+    <a href="index.html">← Back to Home</a>
+    </div>
+  </body>
+    <script>
+      const form = document.getElementById("loginForm");
+      const errorDiv = document.getElementById("error");
+      const successDiv = document.getElementById("success");
+
+      /* SHOW/HIDE PASSWORD */
+      document.querySelectorAll(".toggle-password").forEach((t) => {
+        t.addEventListener("click", () => {
+          const target = document.getElementById(t.dataset.target);
+          if (target.type === "password") {
+            target.type = "text";
+            t.textContent = "Hide";
+          } else {
+            target.type = "password";
+            t.textContent = "Show";
+          }
+        });
+      });
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const email = document
+          .getElementById("email")
+          .value.trim()
+          .toLowerCase();
+        const password = document.getElementById("password").value.trim();
+
+        const response = await fetch("login.php", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+        const result = await response.json();
+        if (result.status === "success") {
+          successDiv.style.display = "block";
+          successDiv.textContent = "Login successful! Redirecting...";
+          setTimeout(() => {
+            window.location.href = "dashboard.php";
+          }, 1200);
+        } else {
+          showError(result.message);
+        }
+      });
+
+      function showError(message) {
+        successDiv.style.display = "none";
+        errorDiv.textContent = message;
+        errorDiv.style.display = "block";
+      }
+    </script>
+  </body>
+</html>

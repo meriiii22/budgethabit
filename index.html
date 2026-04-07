@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BudgetHabit - Expense Tracker</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Poppins, sans-serif;
+      }
+
+      body {
+        background: #f6f9fc;
+        color: #333;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 10%;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        flex-wrap: wrap;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: #5a67d8;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        margin-left: 25px;
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        position: relative;
+        transition: 0.3s;
+      }
+
+      nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 0%;
+        height: 2px;
+        background: #5a67d8;
+        transition: 0.3s;
+      }
+
+      nav a:hover {
+        color: #5a67d8;
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      .hero {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 80px 10%;
+        flex-wrap: wrap;
+      }
+
+      .hero-text {
+        max-width: 500px;
+      }
+
+      .hero-text .btn {
+        margin-top: 10px;
+      }
+
+      .hero h1 {
+        font-size: 46px;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 18px;
+        margin-bottom: 30px;
+        color: #666;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 16px 42px;
+        border: none;
+        border-radius: 40px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s ease;
+        text-decoration: none;
+        text-align: center;
+      }
+
+      .primary {
+        background: #5a67d8;
+        color: white;
+      }
+
+      .primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .cta-btn {
+        background: white;
+        color: #5a67d8;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      }
+
+      .features {
+        padding: 80px 10%;
+        text-align: center;
+      }
+
+      .features h2 {
+        font-size: 34px;
+        margin-bottom: 40px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+      }
+
+      .card {
+        background: white;
+        padding: 30px;
+        border-radius: 18px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .card h3 {
+        margin-bottom: 10px;
+      }
+
+      .cta {
+        background: #5a67d8;
+        color: white;
+        text-align: center;
+        padding: 70px 10%;
+      }
+
+      footer {
+        text-align: center;
+        padding: 25px;
+        background: #222;
+        color: #aaa;
+      }
+
+      @media (max-width: 1024px) {
+        .hero {
+          padding: 50px 5%;
+        }
+
+        .hero h1 {
+          font-size: 36px;
+        }
+
+        .hero p {
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .hero img {
+          display: none;
+        }
+      }
+
+      @media (max-width: 480px) {
+        header {
+          padding: 15px 5%;
+        }
+
+        nav a {
+          margin-left: 15px;
+          font-size: 14px;
+        }
+
+        .hero h1 {
+          font-size: 28px;
+        }
+
+        .hero p {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">BudgetHabit</div>
+
+      <nav>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Spend Smarter Today</h1>
+        <p>Know where your money goes.</p>
+        <a href="register.html" class="btn primary">Get Started</a>
+      </div>
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png"
+        width="380"
+        alt="Finance Icon"
+      />
+    </section>
+
+    <section class="features" id="features">
+      <h2>Why Use BudgetHabit?</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Visual Reports</h3>
+          <p>Understand your spending with simple charts and insights.</p>
+        </div>
+        <div class="card">
+          <h3>Expense Tracking</h3>
+          <p>Easily record and manage daily expenses anytime.</p>
+        </div>
+        <div class="card">
+          <h3>Secure Account</h3>
+          <p>Your financial data is safe and private.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <h2>Start Tracking Your Expenses Today</h2>
+      <br />
+      <a href="register.html" class="btn cta-btn">Create Free Account</a>
+    </section>
+
+    <footer>© 2026 BudgetHabit | Expense Tracker</footer>
+  </body>
+</html>
